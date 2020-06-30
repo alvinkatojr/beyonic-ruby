@@ -20,7 +20,7 @@ module Beyonic::AbstractApi
       response = RestClient.post(@endpoint_url, payload, headers(header_overrides))
       new(Oj.load(response))
     rescue RestClient::BadRequest => e
-      raise ApiError.new(Oj.load(e.response.body))
+      raise ApiError, Oj.load(e.response.body)
     end
 
     def list(payload = {})
@@ -42,7 +42,7 @@ module Beyonic::AbstractApi
       response = RestClient.patch("#{@endpoint_url}/#{id}", payload, headers(header_overrides))
       new(Oj.load(response))
     rescue RestClient::BadRequest => e
-      raise ApiError.new(Oj.load(e.response.body))
+      raise ApiError, Oj.load(e.response.body)
     end
 
     def delete(id)

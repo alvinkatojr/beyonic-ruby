@@ -148,7 +148,7 @@ Style/PreferredHashMethods:
 
 Style/RaiseArgs:
   Enabled: true
-  EnforcedStyle: compact
+  EnforcedStyle: exploded
 
 Style/Encoding:
   Enabled: true
