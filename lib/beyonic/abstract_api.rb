@@ -30,9 +30,7 @@ module Beyonic::AbstractApi
       uri.query_values = payload
 
       resp = RestClient.get(@endpoint_url + '?' + uri.query, headers)
-      ret = new(Oj.load(resp))
-      ret.results = ret.results.map { |obj_attrs| new(obj_attrs) }
-      ret
+      Oj.load(resp).map { |obj_attrs| new(obj_attrs) }
     end
 
     def get(id)
