@@ -17,8 +17,8 @@ module Beyonic::AbstractApi
         end
         payload.delete :metadata
       end
-      resp = RestClient.post(@endpoint_url, payload, headers(header_overrides))
-      new(Oj.load(resp))
+      response = RestClient.post(@endpoint_url, payload, headers(header_overrides))
+      new(Oj.load(response))
     rescue RestClient::BadRequest => e
       raise ApiError.new(Oj.load(e.response.body))
     end
@@ -29,25 +29,25 @@ module Beyonic::AbstractApi
       uri = Addressable::URI.new
       uri.query_values = payload
 
-      resp = RestClient.get(@endpoint_url + '?' + uri.query, headers)
-      Oj.load(resp).map { |obj_attrs| new(obj_attrs) }
+      response = RestClient.get(@endpoint_url + '?' + uri.query, headers)
+      Oj.load(response).map { |obj_attrs| new(obj_attrs) }
     end
 
     def get(id)
-      resp = RestClient.get("#{@endpoint_url}/#{id}", headers)
-      new(Oj.load(resp))
+      response = RestClient.get("#{@endpoint_url}/#{id}", headers)
+      new(Oj.load(response))
     end
 
     def update(id, payload, header_overrides = {})
-      resp = RestClient.patch("#{@endpoint_url}/#{id}", payload, headers(header_overrides))
-      new(Oj.load(resp))
+      response = RestClient.patch("#{@endpoint_url}/#{id}", payload, headers(header_overrides))
+      new(Oj.load(response))
     rescue RestClient::BadRequest => e
       raise ApiError.new(Oj.load(e.response.body))
     end
 
     def delete(id)
-      resp = RestClient.delete("#{@endpoint_url}/#{id}", headers)
-      return true if resp == ''
+      response = RestClient.delete("#{@endpoint_url}/#{id}", headers)
+      return true if response == ''
     end
 
     private
