@@ -10,10 +10,11 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '2.5.8'
   spec.authors       = ['Oleg German', 'Luke Kyohere']
   spec.email         = ['oleg.german@gmail.com', 'luke@beyonic.com']
-  spec.summary       = 'Ruby library for the beyonic.com api'
-  spec.description   = 'Beyonic.com makes enterprise payments to mobile easy. Details: http://beyonic.com'
-  spec.homepage      = 'http://support.beyonic.com/api/'
-  spec.license       = 'MIT'
+
+  spec.summary       = %q{Ruby library for the onafriq.com api}
+  spec.description   = %q{onafriq.com makes enterprise payments to mobile easy. Details: http://onafriq.com}
+  spec.homepage      = "http://support.onafriq.com/api/"
+  spec.license       = "MIT"
 
   spec.files         = Dir['{lib}/**/*.rb', 'bin/*', 'LICENSE', '*.md']
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
